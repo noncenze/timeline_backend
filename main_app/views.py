@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 from rest_framework import viewsets
 from .serializers import *
 from .models import *
@@ -27,3 +28,10 @@ class CategoryView(viewsets.ModelViewSet):
 class EntryView(viewsets.ModelViewSet):
     serializer_class = EntrySerializer
     queryset = Entry.objects.all()
+
+def index(request):
+  return render(request, 'index.html')
+
+def about(request):
+  return render(request, 'about.html')
+
