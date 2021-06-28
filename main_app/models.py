@@ -1,26 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
-<<<<<<< HEAD
-from django.db.models.deletion import CASCADE
-
-# Create your models here.
-class Timeline(models.Model):
-  name = models.CharField(max_length=100)
-
-class extendedUser(models.Model):
-  user = models.OneToOneField(User, on_delete=CASCADE)
-  email = models.CharField(max_length=100)
-  profile_pic = models.CharField(max_length=200)
-
-  def __str__(self):
-    return self.email
-  
-=======
 
 # Create your models here.
 class ExtendedUser(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    email = models.EmailField(max_length=254)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     profilepic = models.CharField(max_length=100)
 
     def __str__(self):
@@ -61,5 +44,4 @@ class Entry(models.Model):
 
     def __str__(self):
         return self.title
->>>>>>> d96eca83c24eb737750b3454c81c6f82a34ad393
 
