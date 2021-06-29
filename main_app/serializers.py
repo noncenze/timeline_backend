@@ -27,6 +27,11 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'primary', 'timeline', 'displaytype')
 
 class EntrySerializer(serializers.ModelSerializer):
+    categories = serializers.SlugRelatedField(
+        many=True,
+        read_only=True,
+        slug_field='name'
+    )
     class Meta:
         model = Entry
         fields = ('id', 'user', 'timeline', 'title', 'categories', 'datetime', 'summary', 'description', 'image')
