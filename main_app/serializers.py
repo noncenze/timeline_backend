@@ -57,8 +57,7 @@ class EntrySerializer(serializers.ModelSerializer):
         many=True,
         read_only=True,
         slug_field='name'
-        )
-    
+    )
     class Meta:
         model = Entry
         fields = ['id', 'user', 'timeline', 'title', 'categories', 'datetime', 'summary', 'description', 'image']
