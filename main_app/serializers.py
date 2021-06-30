@@ -43,16 +43,21 @@ class DisplayTypeSerializer(serializers.ModelSerializer):
         fields = ('id', 'name')
 
 class CategorySerializer(serializers.ModelSerializer):
+    displaytype = serializers.SlugRelatedField(
+        many=False,
+        read_only=True,
+        slug_field='name'
+    )
     class Meta:
         model = Category
         fields = ('id', 'name', 'primary', 'timeline', 'displaytype')
 
+# class CategoryField(serializers.RelatedField):
+#     def to_representation(self, value):
+#         return super().to_representation(value)
+
 class EntrySerializer(serializers.ModelSerializer):
-    categories = serializers.SlugRelatedField(
-        many=True,
-        read_only=True,
-        slug_field='name'
-    )
+    categories = CategorySerializer(many=True, read_only=True)
     timeline = serializers.SlugRelatedField(
         many=False,
         read_only=True,
