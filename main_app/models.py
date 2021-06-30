@@ -36,7 +36,7 @@ class Category(models.Model):
 class Entry(models.Model):
     title = models.CharField(max_length=50)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    timeline = models.ForeignKey(Timeline, on_delete=models.CASCADE)
+    timeline = models.ForeignKey(Timeline, related_name="entries", on_delete=models.CASCADE)
     categories = models.ManyToManyField(Category)
     datetime = models.DateTimeField()
     summary = models.CharField(max_length=100)

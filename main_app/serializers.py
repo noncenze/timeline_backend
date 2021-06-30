@@ -42,11 +42,6 @@ class DisplayTypeSerializer(serializers.ModelSerializer):
         model = DisplayType
         fields = ('id', 'name')
 
-class TimelineSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Timeline
-        fields = ('id', 'user', 'title', 'private')
-
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
@@ -58,6 +53,17 @@ class EntrySerializer(serializers.ModelSerializer):
         read_only=True,
         slug_field='name'
     )
+    timeline = serializers.SlugRelatedField(
+        many=False,
+        read_only=True,
+        slug_field='title'
+    )
     class Meta:
         model = Entry
         fields = ['id', 'user', 'timeline', 'title', 'categories', 'datetime', 'summary', 'description', 'image']
+
+class TimelineSerializer(serializers.ModelSerializer):
+    entries = EntrySerializer(many=True, read_only=True)
+    class Meta:
+        model = Timeline
+        fields = ('id', 'user', 'title', 'private', 'entries')
