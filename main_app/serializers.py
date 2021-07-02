@@ -57,10 +57,13 @@ class CategorySerializer(serializers.ModelSerializer):
 #         return super().to_representation(value)
 
 class EntrySerializer(serializers.ModelSerializer):
-    categories = CategorySerializer(many=True, read_only=True)
+    categories = CategorySerializer(
+        many=True,
+        read_only=True
+        )
     timeline = serializers.SlugRelatedField(
         many=False,
-        read_only=True,
+        queryset=Timeline.objects.all(),
         slug_field='title'
     )
     class Meta:
