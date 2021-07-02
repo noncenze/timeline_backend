@@ -2,11 +2,17 @@ from rest_framework import serializers
 from rest_framework_jwt.settings import api_settings
 from .models import *
 
+class TimelineLinkSerializer(serializers.RelatedField):
+    def to_representation(self, value):
+        id = value.id
+        title = value.title
+        return {'id': id, 'title':title}
 
 class UserSerializer(serializers.ModelSerializer):
+    timelines = TimelineLinkSerializer(many=True, read_only=True)
     class Meta:
         model = User
-        fields = ('id', 'username', 'email')
+        fields = ('id', 'username', 'email', 'timelines')
 
 class UserSerializerWithToken(serializers.ModelSerializer):
     token = serializers.SerializerMethodField()
