@@ -18,7 +18,7 @@ class DisplayType(models.Model):
 
 class Timeline(models.Model):
     title = models.CharField(max_length=50)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name="timelines", on_delete=models.CASCADE)
     private = models.BooleanField(default=True)
 
     def __str__(self):
