@@ -20,6 +20,8 @@ class CreateUser(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class UserView(viewsets.ModelViewSet):
+    # IsAuthenticatedOrReadOnly allows any user to view data, but not interact with it
+    # Other permissions => AllowAny / IsAuthenticated (default) / IsAdminUser
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = UserSerializer
     queryset = User.objects.all()
