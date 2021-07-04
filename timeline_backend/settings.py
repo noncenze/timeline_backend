@@ -134,6 +134,11 @@ CORS_ORIGIN_WHITELIST = [
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
+        # ========= NOTES =========
+        # IsAuthenticated is the default permission (views.py) on the backend that will require users to be authenticated
+        # to interact with the data unless specifically stated elsewhere (i.e. overridden with an AllowAny permissions)
+        # ======= END NOTES =======
+
         # 'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
