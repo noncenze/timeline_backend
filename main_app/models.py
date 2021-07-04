@@ -17,7 +17,7 @@ class DisplayType(models.Model):
         return self.name
 
 class Timeline(models.Model):
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=50, unique=True)
     user = models.ForeignKey(User, related_name="timelines", on_delete=models.CASCADE)
     private = models.BooleanField(default=True)
 
