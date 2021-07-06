@@ -6,7 +6,8 @@ class TimelineLinkSerializer(serializers.RelatedField):
     def to_representation(self, value):
         id = value.id
         title = value.title
-        return {'id': id, 'title':title}
+        private = value.private
+        return {'id': id, 'title':title, 'private':private}
 
 class UserSerializer(serializers.ModelSerializer):
     timelines = TimelineLinkSerializer(many=True, read_only=True)
