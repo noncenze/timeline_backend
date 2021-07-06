@@ -15,7 +15,11 @@ from os import environ
 from pathlib import Path
 import dj_database_url
 import django_heroku
-
+from dotenv import load_dotenv, dotenv_values
+load_dotenv()
+config = dotenv_values(".env")
+# print('(config)', config)
+SECRET_KEY = config.get('SECRET_KEY')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,8 +29,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = environ['SECRET_KEY']
-
+# SECRET_KEY = environ['SECRET_KEY']
+# print('SECRET KEY: ', SECRET_KEY)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
