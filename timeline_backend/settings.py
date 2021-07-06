@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import dj_database_url
+import django_heroku
 from pathlib import Path
 from dotenv import load_dotenv, dotenv_values
 load_dotenv()
@@ -88,7 +90,7 @@ DATABASES = {
         'NAME': 'timelinedb',
     }
 }
-
+DATABASES['default'] = dj_database_url.config()
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -156,3 +158,4 @@ REST_FRAMEWORK = {
 JWT_AUTH = {
     'JWT_RESPONSE_PAYLOAD_HANDLER': 'timeline_backend.utils.my_jwt_response_handler'
 }
+django_heroku.settings(locals())

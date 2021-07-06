@@ -9,6 +9,8 @@ django-cors-headers = "*"
 djangorestframework-jwt = "*"
 psycopg2 = "*"
 python-dotenv = "*"
+dj-database-url = "*"
+django-heroku = "*"
 
 [dev-packages]
 
