@@ -9,6 +9,7 @@ router.register(r'users', views.UserView, 'user')
 router.register(r'extendedusers', views.ExtendedUserView, 'extendeduser')
 router.register(r'displaytypes', views.DisplayTypeView, 'displaytype')
 router.register(r'timelines', views.TimelineView, 'timeline')
+router.register(r'public_timelines', views.PublicTimelineView, 'public_timeline')
 router.register(r'categories', views.CategoryView, 'category')
 router.register(r'entries', views.EntryView, 'entry')
 
